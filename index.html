@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carta virtual de amor</title>
   <style>
-    /* ESTILOS GENERALES */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -13,26 +13,27 @@
     }
 
     body {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: radial-gradient(circle at top, #ffdde1 0%, #ee9ca7 35%, #4a148c 100%);
       overflow: hidden;
       color: #fff;
+      padding: 16px;
     }
 
-    /* TARJETA */
     .card {
       position: relative;
-      width: 90%;
-      max-width: 500px;
+      width: 100%;
+      max-width: 480px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 24px;
-      padding: 24px 24px 32px;
+      padding: 24px 20px 28px;
       backdrop-filter: blur(10px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       text-align: center;
+      z-index: 1;
     }
 
     .card h1 {
@@ -41,19 +42,17 @@
     }
 
     .card p.sub {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       opacity: 0.9;
       margin-bottom: 20px;
     }
 
-    /* PREGUNTA */
     .question {
       margin: 16px 0 20px;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 600;
     }
 
-    /* BOTONES DE RESPUESTA */
     .buttons {
       display: flex;
       gap: 12px;
@@ -68,9 +67,8 @@
       border-radius: 999px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.95rem;
-      transition: transform 0.15s ease, box-shadow 0.15s ease,
-        background 0.15s ease;
+      font-size: 1rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
 
     .btn-yes {
@@ -90,135 +88,163 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     }
 
-    /* RESPUESTA MOSTRADA */
     .answer {
-      min-height: 48px;
+      min-height: 52px;
       font-size: 1rem;
       margin-top: 8px;
     }
 
     .answer span {
       display: inline-block;
-      padding: 6px 14px;
+      padding: 8px 14px;
       border-radius: 16px;
-      background: rgba(0, 0, 0, 0.15);
+      background: rgba(0, 0, 0, 0.18);
     }
 
-    /* TEXTO EXTRA (OPCIONAL) */
     .extra-message {
       margin-top: 18px;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       opacity: 0.9;
     }
 
-    /* CORAZONES FLOTANDO */
     .heart {
       position: fixed;
       bottom: -40px;
-      font-size: 24px;
+      font-size: 28px; /* un poco más grandes por defecto */
       animation-name: floatUp;
       animation-timing-function: linear;
       animation-iteration-count: 1;
       pointer-events: none;
       opacity: 0.9;
+      z-index: 0;
     }
 
     @keyframes floatUp {
       0% {
-        transform: translateY(0) scale(0.8);
+        transform: translateY(0) scale(0.9);
         opacity: 0.9;
       }
       50% {
         opacity: 1;
       }
       100% {
-        transform: translateY(-110vh) scale(1.4);
+        transform: translateY(-110vh) scale(1.5);
         opacity: 0;
+      }
+    }
+
+    /* Ajustes para pantallas pequeñas (celular) */
+    @media (max-width: 600px) {
+      body {
+        align-items: flex-start;      /* sube la carta hacia arriba */
+        padding-top: 40px;            /* espacio pequeño arriba */
+      }
+
+      .card {
+        transform: scale(1.1);        /* carta un poco más grande */
+        border-radius: 20px;
+      }
+
+      .card h1 {
+        font-size: 1.7rem;
+      }
+
+      .card p.sub {
+        font-size: 1rem;
+      }
+
+      .question {
+        font-size: 1.2rem;
+      }
+
+      .btn {
+        font-size: 0.95rem;
+        padding: 9px 16px;
+      }
+
+      .extra-message {
+        font-size: 0.9rem;
+      }
+
+      .heart {
+        font-size: 32px;              /* corazones más grandes en cel */
       }
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>💌 Para ti, con mucho amor 💌</h1>
+    <h1>💌 Para mi novio el macizo y bien wuapote 💌</h1>
     <p class="sub">
-      Esta no es una carta cualquiera... es una pequeña prueba de cuánto significas para mí.
+      Esto es una pequeña prueba de cuánto significas para mí uwu.
     </p>
 
     <p class="question">
-      ¿Quieres seguir construyendo esta historia de amor conmigo? 💖
+      Mi pequeño kahlil ¿quieres seguir estando con migo hasta el fin de los fines?💖
     </p>
 
     <div class="buttons">
-      <button class="btn btn-yes" id="btnYes">Sí, por siempre 💘</button>
-      <button class="btn btn-no" id="btnNo">Mmm... no lo sé 😳</button>
+      <button class="btn btn-yes" id="btnYes">Sí, por siempre iwi 💘</button>
+      <button class="btn btn-no" id="btnNo">Mmm... no lo sé u-u </button>
     </div>
 
     <div class="answer" id="answerText"></div>
 
     <p class="extra-message">
-      P.D: si llegaste hasta aquí, ya hiciste muy feliz a la persona que te envió esto. 🥹💗
+      P.D:Te amo💗
     </p>
   </div>
 
   <script>
-    // Referencias a los elementos
     const btnYes = document.getElementById("btnYes");
     const btnNo = document.getElementById("btnNo");
     const answerText = document.getElementById("answerText");
 
-    // Cuando responde "Sí"
     btnYes.addEventListener("click", () => {
       answerText.innerHTML =
-        '<span>Sabía que íbas a decir que sí 💖 Gracias por quedarte conmigo, prometo hacerte feliz cada día.</span>';
-      // Más corazones cuando dice que sí
-      burstHearts(20);
+        '<span> 💖 Gracias por quedarte conmigo iwi, prometo hacerte feliz cada día.</span>';
+      burstHearts(22); // un poquito más de corazones
     });
 
-    // Cuando responde "No" o "No lo sé"
     btnNo.addEventListener("click", () => {
       answerText.innerHTML =
-        '<span>Está bien, tómate tu tiempo 🥺💔. Solo quiero que sepas que eres muy importante para mí.</span>';
-      // Pocos corazones, más lentos
-      burstHearts(8);
+        '<span> 💔 como se atrevio a poner que no  T.T💔💔💔 </span>';
+      burstHearts(10);
     });
 
-    // FUNCIÓN PARA CREAR UN CORAZÓN INDIVIDUAL
     function createHeart() {
       const heart = document.createElement("span");
       heart.classList.add("heart");
       heart.textContent = "❤";
 
-      // Posición horizontal aleatoria (0 a 100vw)
+      // posición horizontal
       heart.style.left = Math.random() * 100 + "vw";
 
-      // Duración de la animación (4s a 8s)
-      const duration = 4 + Math.random() * 4;
+      // DURACIÓN MÁS RÁPIDA: entre 3 y 5 segundos
+      const duration = 3 + Math.random() * 2;
       heart.style.animationDuration = duration + "s";
 
-      // Tamaño aleatorio del corazón
-      const size = 18 + Math.random() * 18;
+      // TAMAÑO MÁS GRANDE
+      const size = 26 + Math.random() * 18;
       heart.style.fontSize = size + "px";
 
       document.body.appendChild(heart);
 
-      // Eliminar el corazón del DOM cuando termine la animación
       setTimeout(() => {
         heart.remove();
       }, duration * 1000);
     }
 
-    // CORAZONES CONSTANTES DE FONDO
+    // corazones de fondo un poco más seguidos
     setInterval(() => {
       createHeart();
-    }, 800); // cada 0.8s
+    }, 600); // antes 800ms
 
-    // CORAZONES EXTRA CUANDO RESPONDE
     function burstHearts(amount) {
       for (let i = 0; i < amount; i++) {
         setTimeout(() => {
           createHeart();
-        }, i * 80);
+        }, i * 70);
       }
     }
   </script>
