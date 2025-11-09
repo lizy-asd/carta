@@ -13,7 +13,7 @@
     }
 
     body {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -25,40 +25,42 @@
 
     .card {
       position: relative;
-      width: 100%;
-      max-width: 480px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      padding: 24px 20px 28px;
+      width: 90%;
+      max-width: 460px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
+      padding: 24px 18px 28px;
       backdrop-filter: blur(10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
       text-align: center;
       z-index: 1;
     }
 
     .card h1 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       margin-bottom: 12px;
+      line-height: 1.4;
     }
 
     .card p.sub {
-      font-size: 1.05rem;
+      font-size: 1rem;
       opacity: 0.9;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .question {
-      margin: 16px 0 20px;
-      font-size: 1.3rem;
+      margin: 10px 0 16px;
+      font-size: 1.15rem;
       font-weight: 600;
+      line-height: 1.4;
     }
 
     .buttons {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
-      margin-bottom: 16px;
       flex-wrap: wrap;
+      margin-bottom: 14px;
     }
 
     .btn {
@@ -67,38 +69,37 @@
       border-radius: 999px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 1rem;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      font-size: 0.95rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .btn-yes {
       background: #ff4b6e;
       color: #fff;
-      box-shadow: 0 6px 16px rgba(255, 75, 110, 0.6);
+      box-shadow: 0 5px 15px rgba(255, 75, 110, 0.5);
     }
 
     .btn-no {
       background: #fce4ec;
       color: #ad1457;
-      box-shadow: 0 6px 16px rgba(252, 228, 236, 0.6);
+      box-shadow: 0 5px 15px rgba(252, 228, 236, 0.4);
     }
 
     .btn:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      transform: scale(1.05);
     }
 
     .answer {
-      min-height: 52px;
+      min-height: 50px;
       font-size: 1rem;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     .answer span {
       display: inline-block;
       padding: 8px 14px;
-      border-radius: 16px;
-      background: rgba(0, 0, 0, 0.18);
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.15);
     }
 
     .extra-message {
@@ -110,64 +111,48 @@
     .heart {
       position: fixed;
       bottom: -40px;
-      font-size: 28px; /* un poco más grandes por defecto */
-      animation-name: floatUp;
-      animation-timing-function: linear;
-      animation-iteration-count: 1;
+      font-size: 28px;
+      animation: floatUp linear forwards;
       pointer-events: none;
       opacity: 0.9;
       z-index: 0;
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(0.9);
-        opacity: 0.9;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-110vh) scale(1.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) scale(0.8); opacity: 0.9; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.4); opacity: 0; }
     }
 
-    /* Ajustes para pantallas pequeñas (celular) */
+    /* 💖 Ajustes para pantallas de celular */
     @media (max-width: 600px) {
       body {
-        align-items: flex-start;      /* sube la carta hacia arriba */
-        padding-top: 40px;            /* espacio pequeño arriba */
+        align-items: center; /* vuelve al centro */
+        justify-content: center;
+        padding: 12px;
       }
 
       .card {
-        transform: scale(1.1);        /* carta un poco más grande */
-        border-radius: 20px;
+        transform: scale(1);
+        width: 95%;
+        border-radius: 18px;
       }
 
       .card h1 {
-        font-size: 1.7rem;
-      }
-
-      .card p.sub {
-        font-size: 1rem;
+        font-size: 1.4rem;
       }
 
       .question {
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
 
       .btn {
-        font-size: 0.95rem;
-        padding: 9px 16px;
-      }
-
-      .extra-message {
         font-size: 0.9rem;
+        padding: 8px 14px;
       }
 
       .heart {
-        font-size: 32px;              /* corazones más grandes en cel */
+        font-size: 30px;
       }
     }
   </style>
@@ -175,24 +160,17 @@
 <body>
   <div class="card">
     <h1>💌 Para mi novio el macizo y bien wuapote 💌</h1>
-    <p class="sub">
-      ♥♥♥♥
-    </p>
-
-    <p class="question">
-      Mi pequeño kahlil ¿quieres seguir estando con migo hasta el fin de los fines?💖
-    </p>
+    <p class="sub">Mi pequeño Kahlil 💕</p>
+    <p class="question">¿Quieres seguir estando conmigo hasta el fin de los fines? </p>
 
     <div class="buttons">
-      <button class="btn btn-yes" id="btnYes">Sí, por siempre iwi 💘</button>
-      <button class="btn btn-no" id="btnNo">Mmm... no lo sé u-u </button>
+      <button class="btn btn-yes" id="btnYes">Sí, por siempre 💞</button>
+      <button class="btn btn-no" id="btnNo">nio</button>
     </div>
 
     <div class="answer" id="answerText"></div>
 
-    <p class="extra-message">
-      P.D:Te amo💗
-    </p>
+    <p class="extra-message">P.D: Te amo 💗</p>
   </div>
 
   <script>
@@ -202,13 +180,13 @@
 
     btnYes.addEventListener("click", () => {
       answerText.innerHTML =
-        '<span> 💖 yeyy iwi, prometo hacerte feliz cada día.</span>';
-      burstHearts(22); // un poquito más de corazones
+        '<span> yeyy,prometo hacelo feliz cada dia💞</span>';
+      burstHearts(18);
     });
 
     btnNo.addEventListener("click", () => {
       answerText.innerHTML =
-        '<span> 💔 como se atrevio a poner que no  T.T💔💔💔 </span>';
+        '<span>💔 cómo se atrevió a poner que no T.T </span>';
       burstHearts(10);
     });
 
@@ -216,38 +194,21 @@
       const heart = document.createElement("span");
       heart.classList.add("heart");
       heart.textContent = "❤";
-
-      // posición horizontal
       heart.style.left = Math.random() * 100 + "vw";
-
-      // DURACIÓN MÁS RÁPIDA: entre 3 y 5 segundos
       const duration = 3 + Math.random() * 2;
       heart.style.animationDuration = duration + "s";
-
-      // TAMAÑO MÁS GRANDE
-      const size = 26 + Math.random() * 18;
-      heart.style.fontSize = size + "px";
-
+      heart.style.fontSize = 26 + Math.random() * 12 + "px";
       document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, duration * 1000);
+      setTimeout(() => heart.remove(), duration * 1000);
     }
 
-    // corazones de fondo un poco más seguidos
-    setInterval(() => {
-      createHeart();
-    }, 600); // antes 800ms
+    setInterval(createHeart, 650);
 
     function burstHearts(amount) {
       for (let i = 0; i < amount; i++) {
-        setTimeout(() => {
-          createHeart();
-        }, i * 70);
+        setTimeout(createHeart, i * 70);
       }
     }
   </script>
 </body>
 </html>
-
